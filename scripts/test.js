@@ -2,6 +2,7 @@
 
 import { randomChoice } from './modules/utilits.js';
 import { ActionButton } from './modules/Buttons.js';
+// import { Problems } from './modules/Problems.js';
 
 const questions = JSON.parse(localStorage.questions);
 const $container = document.querySelector(".container");

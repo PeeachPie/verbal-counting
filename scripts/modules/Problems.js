@@ -1,120 +1,107 @@
-class AdditionProblem {
- constructor(max) {
-   this.operator = '+';
-   this.max = max;
- }
- create() {
-  a = getRandom(0, this.max / 2);
-  b = getRandom(0, this.max / 2);
-  this.answer = a + b;
-  this.text = `${a} + ${b} = `
-  return [`${a} + ${b} = `, a + b];
- }
+import {getRandom, randomChoice} from './utilits.js';
+
+class Problem {
+  constructor() {
+    this.given = null;
+  }
+
+  get right() {
+    return this.given === this.answer;
+  }
 }
 
-class SubtractionProblem {
+class AdditionProblem extends Problem {
   constructor(max) {
-    this.operator = '-';
+    this.operator = "+";
     this.max = max;
-  }
-  create() {
-    a = getRandom(0, this.max);
-    b = getRandom(0, a);
-   this.answer = a - b;
-   this.text = `${a} - ${b} = `
-  //  return [`${a} + ${b} = `, a + b];
 
-   return [`${a} - ${b} = `, a - b];
+    const a = getRandom(0, this.max / 2);
+    const b = getRandom(0, this.max / 2);
+    this.answer = a + b;
+    this.text = `${a} + ${b} = `;
   }
 }
 
-class MultiplicationProblem {
+class SubtractionProblem extends Problem {
   constructor(max) {
-    this.operator = '*';
+    this.operator = "-";
     this.max = max;
-  }
-  create() {
-   a = getRandom(0, this.max / 2);
-   b = getRandom(0, this.max / 2);
-   this.answer = a + b;
-   this.text = `${a} + ${b} = `
-   return [`${a} + ${b} = `, a + b];
+
+    const a = getRandom(0, this.max);
+    const b = getRandom(0, a);
+    this.answer = a - b;
+    this.text = `${a} - ${b} = `;
   }
 }
 
-class DivisionProblem {
-  constructor(max) {
-    this.operator = '/';
-    this.max = max;
-  }
-  create() {
-   a = getRandom(0, this.max / 2);
-   b = getRandom(0, this.max / 2);
-   this.answer = a + b;
-   this.text = `${a} + ${b} = `
-   return [`${a} + ${b} = `, a + b];
+class MultiplicationProblem extends Problem {
+  constructor(number) {
+    this.operator = "*";
+    this.number = number;
+
+    const a = getRandom(0, 10);
+    const b = this.number;
+    this.answer = a * b;
+    this.text = `${a} * ${b} = `;
   }
 }
 
-// class Problem {
-//   static types = {
-//     addition: AdditionProblem,
-//     subtraction: SubtractionProblem,
-//     multiplication: MultiplicationProblem,
-//     division: DivisionProblem,
-//   }
-//   create(type, problemSettings) {
-//     return new Problem.types[type]()
-//   }
-// }
+class DivisionProblem extends Problem {
+  constructor(number) {
+    this.operator = "/";
+    this.number = number;
+
+    const a = this.number;
+    const b = getRandom(0, 10);
+    this.answer = b;
+    this.text = `${a * b} ÷ ${a} = `;
+  }
+}
 
 class Problems {
-  // static types = {
-  //   addition: AdditionProblem,
-  //   subtraction: SubtractionProblem,
-  //   multiplication: MultiplicationProblem,
-  //   division: DivisionProblem,
-  // }
   constructor() {
     this.operators = [];
     this.numbers = [];
     this.max = 10;
+    this.questions = 10;
   }
 
-  createProblem(operator, max) {
-    let a, b;
+  createProblem() {
+    const operator = randomChoice(this.operators);
     switch (operator) {
       case "+":
-        a = getRandom(0, max / 2);
-        b = getRandom(0, max / 2);
-        return [`${a} + ${b} = `, a + b];
+        return new AdditionProblem(this.max);
       case "-":
-        a = getRandom(0, max);
-        b = getRandom(0, a);
-        return [`${a} - ${b} = `, a - b];
+        return new SubtractionProblem(this.max);
       case "/":
-        a = randomChoice(this.numbers);
-        b = getRandom(0, 10);
-        return [`${a * b} ÷ ${a} = `, b];
+        return new DivisionProblem(randomChoice(this.numbers));
       case "*":
-        a = getRandom(0, 10);
-        b = randomChoice(this.numbers);
-        return [`${a} \u00d7 ${b} = `, a * b];
-      default: return 'some Error'
-    } 
+        return new MultiplicationProblem(randomChoice(this.numbers));
+      default:
+        return "some Error";
+    }
   }
 
   createProblems() {
-    let problems = [] 
+    let problems = [];
     for (let i = 1; i <= this.questions; i++) {
-      let equation = this.createProblem(randomChoice(this.operators), this.max);
-      problems.push({
-        eq: equation[0],
-        ans: equation[1],
-        given: null,
-        right: false,
-      });
+      let problem = this.createProblem();
+      problems.push(problem);
     }
-    return problems
+    return problems;
+  }
+
+  // подсчитывает поличество правильных ответов
+  get right() {
+    return this.problems.reduce((total, problem) => problem.right ? total + 1 : total, 0);
+  }
+
+  // находит неправильные примеры
+  get wrongProblems() {
+    return this.problems.filter((problem) => !problem.right);
   }
 }
+
+a = new Problems
+
+console.log(a.createProblems())
