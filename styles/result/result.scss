@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+@import "../a.scss";
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: $fontSize;
+  font-family: 'Roboto', sans-serif;
+  color: $fontColor;
+  background: $bgcolor;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+button {
+  appearance: none;
+}
+
+button, input {
+  font: inherit;
+  background-color: inherit;
+  color: inherit;
+}
+
+a {
+  appearance: none;
+  outline: none;
+  text-decoration: none;
+  &:link 
+    {
+      color: $fontColor;
+    }
+
+  &:visited 
+  {
+    color: $fontColor;
+  }
+}
+
+.container {
+  padding: 3vmin;
+  width: $container-width - 6vmin;
+  margin: auto;
+}
+
+.result {
+  padding: 3vmin;
+  box-sizing: border-box;
+  border: $border-width solid $borderColor;
+  border-radius: $border-radius;
+}
+
+.total {
+  margin-bottom: 3vmin;
+}
+
+.answers {
+  // box-sizing: border-box;
+  padding: 3vmin;
+  .right {
+    margin-bottom: 0.5vmin;
+    border-left: $border-width solid rgb(80, 255, 80);
+    color: rgb(80, 255, 80);
+  }
+  .wrong {
+    margin-bottom: 0.5vmin;
+    border-right: $border-width solid rgb(255, 55, 55);
+    color: rgb(255, 55, 55);
+  }
+}
+
+.buttons {
+  & > * {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 9vmin;
+    margin: auto;
+    margin-top: 3vmin;
+    border-radius: $border-radius;
+  } 
+}
+
+.correct {
+  width: 45vmin;
+  box-sizing: border-box;
+  border: $border-width solid rgb(255, 55, 55);
+  &:hover {
+    box-shadow: 0 0 1.5vmin rgb(255, 55, 55);
+  } 
+}
+.home {
+  box-sizing: border-box;
+  border: $border-width solid rgb(80, 255, 80);
+  width: 30vmin;
+  &:hover {
+    box-shadow: 0 0 1.5vmin rgb(80, 255, 80);
+  }  
+}

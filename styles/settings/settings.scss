@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+@import "../a.scss";
+
+%center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: $fontSize;
+  font-family: 'Roboto', sans-serif;
+  color: $fontColor;
+  background: $bgcolor;
+  display: flex;
+}
+
+button {
+  appearance: none;
+  padding: 0;
+}
+
+button, input {
+  font: inherit;
+  background-color: inherit;
+  color: inherit;
+}
+
+
+a {
+  appearance: none;
+  outline: none;
+  text-decoration: none;
+  &:link 
+    {
+      color: $fontColor;
+    }
+
+  &:visited 
+  {
+    color: $fontColor;
+  }
+}
+
+.container 
+{
+  margin: auto;
+  width: $container-width;
+  display: flex;
+}
+
+.info {
+  @extend %center;
+  font-size: 3vmin;
+  color: #777777;
+}
+
+.operators-settings, .questions-settings {
+  box-sizing: border-box;
+  border: $border-width solid $borderColor;
+  border-radius: $border-radius;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > * {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.buttons > * 
+  {
+    box-sizing: border-box;
+    @extend %center;
+    height: $button-height;
+    color: #ebebeb;
+    border-radius: 6vmin;
+  }
+
+.text-with-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.operators-settings {  
+  // box-sizing: border-box;
+  padding: 3vmin;
+  height: min-content;
+  & > * {
+    padding: 3vmin 0;
+  }
+  .text, .value {
+    margin-bottom: 3vmin;
+  }
+
+  .buttons {
+    width: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+.numbers {
+  display: none;
+}
+
+.selected{
+  box-sizing: border-box;
+  border: $border-width solid;
+  background-color: inherit;
+}
+
+.unselected {
+  box-sizing: border-box;
+  border: $border-width solid $borderColor !important;
+  color: #777777;
+  &:hover {
+    box-shadow: 0 0 0.7vmin !important;
+  }
+}
+
+.value
+{
+  border: 0;
+  padding: 0;
+  background-color: inherit;
+  box-sizing: border-box;
+  border-bottom: 0.3vmin solid $borderColor;
+  width: 10vmin;
+  color: rgb(212,0,255);
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+}
+
+.choose 
+{
+  justify-content: space-between;
+  align-content: space-between;
+  color: $fontColor;
+  display: flex;
+  width: 100%;
+
+  & * >
+  {
+    @extend %center;
+  }
+}
+
+.operators 
+{
+  .choose {
+    font-size: 8vmin;
+    width: 55vmin;
+    
+    & * {
+      border-color: hsl(calc(310 - var(--i) * 5), 100%, 50%);
+      width: $button-height;
+      height: $button-height;
+      border-radius: $border-radius;
+      &:hover {
+        box-shadow: 0 0 1vmin hsl(calc(310 - var(--i) * 5), 100%, 50%);
+        // hsl(calc(115 - var(--i) * 21), 100%, 50%)
+      }
+    }
+  } 
+}
+
+.numbers, .max {
+  display: none;
+}
+
+.numbers
+{
+  .choose {
+    width: $container-width - 10vmin;
+    & * 
+    {
+      border-color: hsl(calc(310 - var(--i) * 2), 100%, 50%);
+      // hsl(calc(115 - var(--i) * 8), 100%, 50%)
+      border-radius: 1vmin;
+      width: 7vmin;
+      height: 7vmin;
+      &:hover {
+        box-shadow: 0 0 1vmin  hsl(calc(310 - var(--i) * 2), 100%, 50%);
+      }
+    }
+  }
+}
+
+.slider
+{
+  width: 50vmin;
+  .range
+  {
+    appearance: none;
+    width: 100%;
+    height: 3vmin;
+    background: #1f1f1f;
+    border-radius: 1.5vmin;
+    position: relative;
+    margin:0;
+    padding:0;
+
+    &::-webkit-slider-runnable-track
+    {
+      box-sizing: border-box;
+      border-radius: 1.5vmin;
+      border: $border-width solid $borderColor;
+      height: 3vmin;
+      background-color: inherit;
+    }
+
+    &::-webkit-slider-thumb {
+      box-sizing: border-box;
+      appearance: none;
+      background: #1f1f1f;
+      border: $border-width solid rgb(212,0,255);
+      border-radius: 100%;
+      cursor: pointer;
+      width: 4.5vmin;
+      height: 4.5vmin;
+      margin-top: -1.35vmin;
+    }
+
+    &::-moz-range-track
+    {
+      box-sizing: border-box;
+      border-radius: 1.5vmin;
+      border: $border-width solid $borderColor;
+      height: 3vmin;
+    }
+
+    &::-moz-range-thumb
+    {
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #1f1f1f;
+      border: $border-width solid rgb(212,0,255);
+      border-radius: 100%;
+      cursor: pointer;
+      width: 4.5vmin;
+      height: 4.5vmin;
+      margin-top: -1.35vmin;
+    }
+
+    &::after, &::before
+    {
+      position: absolute;
+      font-size: 3vmin;
+      font-family: inherit;
+      color: #777777;
+      top: -7%;
+    }
+    &::after {
+      left: 102%
+    }
+    &::before {
+      right: 102%;
+    }
+  }
+}
+
+#reset {
+  border: $border-width solid rgb(255, 55, 55);
+  font-size: 6vmin;
+  margin-right: 3vmin;
+  width: $button-height;
+  // color: #777777;
+  pointer-events: none;
+  &:hover {
+    box-shadow: 0 0 1.5vmin rgb(255, 55, 55);
+  } 
+}
+
+#reset-svg {
+  width: 7vmin;
+  height: 7vmin
+}
+
+#reset-svg-path {
+  fill: #777777;
+}
+
+#next {
+  border: $border-width solid rgb(212,0,255);
+  width: $button-height;
+  color: #777777;
+  pointer-events: none;
+  &:hover {
+    box-shadow: 0 0 1.5vmin rgb(212,0,255) !important;
+  } 
+}
+
+.questions-settings {
+  height: 50vmin;
+  display: none;
+
+  .text-with-input 
+  {
+    margin-top: 9vmin;
+  }
+
+  .slider {
+    margin-top: 6vmin;
+  }
+  .buttons {
+    margin-top:6vmin;
+    width: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+  } 
+}
+
+#max-range {
+  &::after {
+    content: '100';
+  }
+  
+  &::before {
+    content: '10';
+  }
+}
+
+#questions-range {
+  &::after {
+    content: '30';
+  }
+
+  &::before {
+    content: '5';
+  }
+}
+
+#return {
+  border: $border-width solid rgb(212,0,255);
+  margin-right: 3vmin;
+  width: $button-height;
+  &:hover {
+    box-shadow: 0 0 1.5vmin rgb(212,0,255);
+  } 
+}
+#start {
+  border: $border-width solid rgb(80, 255, 80);
+  width: 24vmin;
+  &:hover {
+    box-shadow: 0 0 1.5vmin rgb(80, 255, 80);
+  }
+}
