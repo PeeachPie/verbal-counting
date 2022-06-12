@@ -2,7 +2,7 @@
 
 import { randomChoice } from './modules/utilits.js';
 import { ActionButton } from './modules/Buttons.js';
-// import { Problems } from './modules/Problems.js';
+import { Problems } from './modules/Problems.js';
 
 const questions = JSON.parse(localStorage.questions);
 const $container = document.querySelector(".container");
@@ -24,7 +24,7 @@ const $counter = document.querySelector(".counter");
 
 let counter = 0;
 
-const problems = JSON.parse(localStorage.getItem("problems"));
+const problems = new Problems(JSON.parse(localStorage.getItem("settings")));
 console.log(problems);
 problems.create()
 

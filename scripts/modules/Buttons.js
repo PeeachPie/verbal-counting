@@ -23,10 +23,9 @@ class ActionButton {
 }
 
 class SettingsButton {
-  constructor (settings, element) {
+  constructor (element) {
     this.element = element;
     this.active = false;
-    this.settings = settings;
   }
 
   // выбирает кнопку
@@ -67,18 +66,18 @@ class SettingsButton {
 }
 
 class NumberButton extends SettingsButton {
-  constructor (settings, element, number) {
-    super(settings, element);
-    this.type = 'number'
-    this.number = number;
-    this.element.addEventListener("click", this.setNumber.bind(this))
+  constructor (element, number) {
+    super(element);
+    this.type = 'numbers'
+    this.value = number;
+    // this.element.addEventListener("click", this.setNumber.bind(this))
     // this.element.addEventListener("click", this.doubleClick.bind(this, selectNumbersBefore))
   }
 
   // устанавливает значение множителя/делителя в настройки
-  setNumber() {
-    this.setValueInList("numbers", this.number);
-  }
+  // setNumber() {
+  //   this.setValueInList("numbers", this.number);
+  // }
 
   // // выбирает делители/множители до нажатой кнопки включая ее
   // selectNumbersBefore() {
@@ -92,17 +91,17 @@ class NumberButton extends SettingsButton {
 }
 
 class OperatorButton extends SettingsButton {
-  constructor (settings, element, operator) {
-    super(settings, element);
-    this.type = 'operator'
-    this.operator = operator;
-    this.element.addEventListener("click", this.setOperator.bind(this))
+  constructor (element, operator) {
+    super(element);
+    this.type = 'operators'
+    this.value = operator;
+    // this.element.addEventListener("click", this.setOperator.bind(this))
   }
 
   // устанавливает оператор в настройки
-  setOperator() {
-    this.setValueInList("operators", this.operator);
-  }
+  // setOperator() {
+  //   this.setValueInList("operators", this.operator);
+  // }
 }
 
 export { OperatorButton, NumberButton, ActionButton }

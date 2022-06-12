@@ -1,30 +1,32 @@
 class SliderSetter {
-  constructor(settings, element) {
-    this.settings = settings;
+  constructor(element) {
+    // this.settings = settings;
     this.numberInput = element.querySelector('input[type="number"]');
     this.rangeInput = element.querySelector('input[type="range"]');
     this.max = Number(this.rangeInput.max)
     this.min = Number(this.rangeInput.min)
 
-    this.numberInput.addEventListener("change", () => {
-      this.setInputValue('number')
-      this.setValue()
-    })
+    // this.numberInput.addEventListener("change", () => {
+    //   this.setInputValue('number')
+    //   this.setValue()
+    // })
 
-    this.rangeInput.addEventListener("input", () => {
-      this.setInputValue('range')
-      this.setValue()
-    })
+    // this.rangeInput.addEventListener("input", () => {
+    //   this.setInputValue('range')
+    //   this.setValue()
+    // })
   }
 
-  // устанавливает значение по селектору в настройки
-  setValue() {
-    this.settings[this.selector] = this.value
-  }
+  // // устанавливает значение по селектору в настройки
+  // setValue() {
+  //   this.settings[this.selector] = this.value
+  // }
 
   // синхронизирует значения из input type="range" и input type="number"
-  setInputValue(type) {
+  synchronizeInput(type) {
     this.value = Number(type === 'number' ? this.numberInput.value : this.rangeInput.value);
+    this.value < this.min ? this.value = this.min : this.value;
+    this.value > this.max ? this.value = this.max : this.value;
     this.numberInput.value = this.rangeInput.value = this.value;
     this.changeSliderFill(this.perсent)
   }
@@ -50,18 +52,18 @@ class SliderSetter {
 }
 
 class Questions extends SliderSetter {
-  constructor (settings, numberInput, rangeInput) {
-    super(settings, numberInput, rangeInput);
+  constructor (numberInput, rangeInput) {
+    super(numberInput, rangeInput);
     this.value = 5;
-    this.selector = 'questions'
+    this.type = 'questions'
   }
 }
 
 class Max extends SliderSetter {
-  constructor (settings, numberInput, rangeInput) {
-    super(settings, numberInput, rangeInput);
+  constructor (numberInput, rangeInput) {
+    super(numberInput, rangeInput);
     this.value = 10;
-    this.selector = 'max'
+    this.type = 'max'
   }
 }
 

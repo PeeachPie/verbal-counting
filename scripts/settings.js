@@ -2,6 +2,7 @@
 
 import { Task } from './modules/Tasks.js';
 import { Problems } from './modules/Problems.js';
+import { Settings } from './modules/ProblemsSettings.js';
 import { OperatorButton, NumberButton, ActionButton } from './modules/Buttons.js';
 import { Questions, Max } from './modules/Slider.js';
 
@@ -14,7 +15,8 @@ const $numbersBlock = document.querySelector(".numbers");
 const $maxBlock = document.querySelector(".max");
 
 const Tasks = new Task()
-const problems = new Problems()
+const settings = new Settings()
+// const settings = new Problems()
 
 // меняет страницу настроек
 function changeSettingsPage(previousPage, nextPage) {
@@ -27,7 +29,7 @@ function resetSettings() {
   numbers.forEach(num => num.unselect());
   operators.forEach(operator => operator.unselect());
 
-  problems.reset();
+  settings.reset();
   questions.reset();
   max.reset();
 
@@ -39,7 +41,7 @@ function resetSettings() {
 
 new ActionButton(document.querySelector("#start"), 
   function () {
-  localStorage.setItem("problems", JSON.stringify(problems));
+  localStorage.setItem("settings", JSON.stringify(settings));
   // localStorage.setItem("questions", JSON.stringify(questions.value));
 })
 
@@ -59,20 +61,25 @@ const next = new ActionButton(
 );
 
 const questions = new Questions (
-  problems,
-  document.querySelector(".questions"),
+
+  document.querySelector(".questions")
   )
 
 const max = new Max(
-  problems,
-  document.querySelector(".max"),
+  // settings,
+  document.querySelector(".max")
 );
 
 const operators = Array.from(document.querySelectorAll(".operators .choose > *"))
-  .map((operator, i) => (new OperatorButton(problems, operator, ['+', '-', '*', '/'][i])))
+  .map((operator, i) => (new OperatorButton(operator, ['+', '-', '*', '/'][i])))
 
 const numbers = Array.from(document.querySelectorAll(".numbers .choose > *"))
-  .map((number, i) => (new NumberButton(problems, number, i + 1)))
+  .map((number, i) => (new NumberButton(number, i + 1)))
+
+settings.watchSlider(questions)
+settings.watchSlider(max)
+settings.watchButtons(operators)
+settings.watchButtons(numbers)
 
 // выбирает делители/множители до нажатой кнопки включая ее
 function selectNumbersBefore(button) {
@@ -100,23 +107,23 @@ for (let i = 0; i < numbers.length; i++) {
 window.addEventListener("unload", resetSettings);
 
 window.addEventListener("click", () => {
-  console.log(problems)
-  problems.operators.includes("+") || problems.operators.includes("-")
+  console.log(settings)
+  settings.operators.includes("+") || settings.operators.includes("-")
     ? showElement($maxBlock)
     : hideElement($maxBlock);
-  problems.operators.includes("*") || problems.operators.includes("/")
+  settings.operators.includes("*") || settings.operators.includes("/")
     ? showElement($numbersBlock)
     : hideElement($numbersBlock);
 
-  if (problems.operators.length > 0) {
+  if (settings.operators.length > 0) {
     reset.able('svg')
     hideElement($info);
   }
 
-  if ((problems.operators.includes("*") || problems.operators.includes("/"))) {
-    problems.numbers.length > 0 ? next.able('text') : next.unable('text');
+  if ((settings.operators.includes("*") || settings.operators.includes("/"))) {
+    settings.numbers.length > 0 ? next.able('text') : next.unable('text');
   } 
-  else if (problems.operators.includes("+") || problems.operators.includes("-")) {
+  else if (settings.operators.includes("+") || settings.operators.includes("-")) {
     next.able('text');
   }
 });

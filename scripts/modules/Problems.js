@@ -59,12 +59,12 @@ class DivisionProblem extends Problem {
 }
 
 class Problems {
-  constructor() {
-    this.operators = [];
-    this.numbers = [];
-    this.max = 10;
-    this.questions = 5;
-    this.problems = [];
+  constructor(settings) {
+    this.operators = settings.operators;
+    this.numbers = settings.numbers;
+    this.max = settings.max;
+    this.questions = settings.questions;
+    this.problems = settings.problems;
   }
 
   reset() {
