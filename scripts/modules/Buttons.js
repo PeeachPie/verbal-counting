@@ -42,7 +42,7 @@ class SettingsButton {
   }
 
   // установщик значения по селектору
-  setter(selector, value) {
+  setValueInList(selector, value) {
     const index = this.settings[selector].indexOf(value);
     if (index === -1) {
       this.settings[selector].push(value);
@@ -69,6 +69,7 @@ class SettingsButton {
 class NumberButton extends SettingsButton {
   constructor (settings, element, number) {
     super(settings, element);
+    this.type = 'number'
     this.number = number;
     this.element.addEventListener("click", this.setNumber.bind(this))
     // this.element.addEventListener("click", this.doubleClick.bind(this, selectNumbersBefore))
@@ -76,7 +77,7 @@ class NumberButton extends SettingsButton {
 
   // устанавливает значение множителя/делителя в настройки
   setNumber() {
-    this.setter("numbers", this.number);
+    this.setValueInList("numbers", this.number);
   }
 
   // // выбирает делители/множители до нажатой кнопки включая ее
@@ -93,13 +94,14 @@ class NumberButton extends SettingsButton {
 class OperatorButton extends SettingsButton {
   constructor (settings, element, operator) {
     super(settings, element);
+    this.type = 'operator'
     this.operator = operator;
     this.element.addEventListener("click", this.setOperator.bind(this))
   }
 
   // устанавливает оператор в настройки
   setOperator() {
-    this.setter("operators", this.operator);
+    this.setValueInList("operators", this.operator);
   }
 }
 

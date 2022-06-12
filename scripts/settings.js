@@ -1,6 +1,7 @@
 "use strict";
 
 import { Task } from './modules/Tasks.js';
+import { Problems } from './modules/Problems.js';
 import { OperatorButton, NumberButton, ActionButton } from './modules/Buttons.js';
 import { Questions, Max } from './modules/Slider.js';
 
@@ -13,6 +14,7 @@ const $numbersBlock = document.querySelector(".numbers");
 const $maxBlock = document.querySelector(".max");
 
 const Tasks = new Task()
+const problems = new Problems()
 
 // меняет страницу настроек
 function changeSettingsPage(previousPage, nextPage) {
@@ -25,7 +27,7 @@ function resetSettings() {
   numbers.forEach(num => num.unselect());
   operators.forEach(operator => operator.unselect());
 
-  Tasks.reset();
+  problems.reset();
   questions.reset();
   max.reset();
 
@@ -37,8 +39,8 @@ function resetSettings() {
 
 new ActionButton(document.querySelector("#start"), 
   function () {
-  localStorage.setItem("problems", JSON.stringify(Tasks.createProblems()));
-  localStorage.setItem("questions", JSON.stringify(Tasks.questions));
+  localStorage.setItem("problems", JSON.stringify(problems));
+  // localStorage.setItem("questions", JSON.stringify(questions.value));
 })
 
 new ActionButton(
@@ -57,22 +59,20 @@ const next = new ActionButton(
 );
 
 const questions = new Questions (
-  Tasks,
+  problems,
   document.querySelector(".questions"),
-  // document.querySelector("#questions-range")
   )
 
 const max = new Max(
-  Tasks,
+  problems,
   document.querySelector(".max"),
-  // document.querySelector("#max-range")
 );
 
 const operators = Array.from(document.querySelectorAll(".operators .choose > *"))
-  .map((operator, i) => (new OperatorButton(Tasks, operator, ['+', '-', '*', '/'][i])))
+  .map((operator, i) => (new OperatorButton(problems, operator, ['+', '-', '*', '/'][i])))
 
 const numbers = Array.from(document.querySelectorAll(".numbers .choose > *"))
-  .map((number, i) => (new NumberButton(Tasks, number, i + 1)))
+  .map((number, i) => (new NumberButton(problems, number, i + 1)))
 
 // выбирает делители/множители до нажатой кнопки включая ее
 function selectNumbersBefore(button) {
@@ -92,63 +92,31 @@ function showElement(element) {
   element.style.display = "flex";
 }
 
-// for (let i = 0; i < operators.length; i++) {
-//   operators[i].element.addEventListener("click", operators[i].setOperator.bind(operators[i]));
-// }
-
 for (let i = 0; i < numbers.length; i++) {
   // numbers[i].element.addEventListener("click", numbers[i].setNumber.bind(numbers[i]));
   numbers[i].element.addEventListener("click", numbers[i].doubleClick.bind(numbers[i], selectNumbersBefore));
 }
 
-// max.numberInput.addEventListener("change", () => {
-//   max.setInputValue('number')
-//   max.setMaxValue(Tasks)
-// })
-
-// max.rangeInput.addEventListener("input", () => {
-//   max.setInputValue('range')
-//   max.setMaxValue(Tasks)
-// })
-
-// questions.numberInput.addEventListener("change", () => {
-//   questions.setInputValue('number')
-//   questions.setQuestionsValue(Tasks)
-// })
-
-// questions.rangeInput.addEventListener("input", () => {
-//   questions.setInputValue('range')
-//   questions.setQuestionsValue(Tasks)
-// })
-
-// start.element.addEventListener("click", start.callAction);
-
-// reset.element.addEventListener("click", reset.callAction);
-
-// next.element.addEventListener("click", next.callAction);
-
-// back.element.addEventListener("click", back.callAction);
-
-// window.addEventListener("load", resetSettings);
 window.addEventListener("unload", resetSettings);
 
 window.addEventListener("click", () => {
-  Tasks.operators.includes("+") || Tasks.operators.includes("-")
+  console.log(problems)
+  problems.operators.includes("+") || problems.operators.includes("-")
     ? showElement($maxBlock)
     : hideElement($maxBlock);
-  Tasks.operators.includes("*") || Tasks.operators.includes("/")
+  problems.operators.includes("*") || problems.operators.includes("/")
     ? showElement($numbersBlock)
     : hideElement($numbersBlock);
 
-  if (Tasks.operators.length > 0) {
+  if (problems.operators.length > 0) {
     reset.able('svg')
     hideElement($info);
   }
 
-  if ((Tasks.operators.includes("*") || Tasks.operators.includes("/"))) {
-    Tasks.numbers.length > 0 ? next.able('text') : next.unable('text');
+  if ((problems.operators.includes("*") || problems.operators.includes("/"))) {
+    problems.numbers.length > 0 ? next.able('text') : next.unable('text');
   } 
-  else if (Tasks.operators.includes("+") || Tasks.operators.includes("-")) {
+  else if (problems.operators.includes("+") || problems.operators.includes("-")) {
     next.able('text');
   }
 });

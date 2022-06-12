@@ -63,10 +63,19 @@ class Problems {
     this.operators = [];
     this.numbers = [];
     this.max = 10;
-    this.questions = 10;
+    this.questions = 5;
+    this.problems = [];
   }
 
-  createProblem() {
+  reset() {
+    this.operators = [];
+    this.numbers = [];
+    this.max = 10;
+    this.questions = 5;
+    this.problems = [];
+  }
+
+  _createProblem() {
     const operator = randomChoice(this.operators);
     switch (operator) {
       case "+":
@@ -82,12 +91,13 @@ class Problems {
     }
   }
 
-  createProblems() {
+  create() {
     let problems = [];
     for (let i = 1; i <= this.questions; i++) {
-      let problem = this.createProblem();
+      let problem = this._createProblem();
       problems.push(problem);
     }
+    this.problems = problems;
     return problems;
   }
 
@@ -102,6 +112,8 @@ class Problems {
   }
 }
 
-a = new Problems
+export { Problems }
 
-console.log(a.createProblems())
+// a = new Problems
+
+// console.log(a.createProblems())

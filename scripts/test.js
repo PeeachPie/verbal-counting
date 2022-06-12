@@ -20,30 +20,34 @@ const $counter = document.querySelector(".counter");
   
 // )
 
+// const problems = new Problems()
+
 let counter = 0;
 
-let problems = JSON.parse(localStorage.getItem("problems"));
+const problems = JSON.parse(localStorage.getItem("problems"));
+console.log(problems);
+problems.create()
 
-problems.checkAns = function () {
-  this[counter].given = Number.parseInt($answer.value);
-  $answer.value = "";
-  this[counter].right = this[counter].ans === this[counter].given;
-  counter++;
-  return this[counter - 1].right;
-};
+// problems.checkAns = function () {
+//   this[counter].given = Number.parseInt($answer.value);
+//   $answer.value = "";
+//   this[counter].right = this[counter].ans === this[counter].given;
+//   counter++;
+//   return this[counter - 1].right;
+// };
 
 // создает новое задание
 function createNewTask(problems) {
-  if (counter + 1 > questions) {
+  if (counter + 1 > problems.questions) {
     localStorage.setItem("problems", JSON.stringify(problems));
     window.location.href = "../pages/result.html";
   } else {
-    $counter.textContent = `${counter + 1} задание из ${questions}`;
+    $counter.textContent = `${counter + 1} задание из ${problems.questions}`;
     $task.style.display = "block";
     $result.style.display = "none";
     $container.style.borderColor = "#4a4a4a";
     $container.style.boxShadow = 'none'
-    $problem.textContent = problems[counter].eq;
+    $problem.textContent = problems.problems[counter].text;
   }
 }
 
@@ -51,7 +55,8 @@ function createNewTask(problems) {
 function showAns() {
   $task.style.display = "none";
   $result.style.display = "block";
-  problems.checkAns() ? rightAns() : wrongAns();
+  problems.problems[counter].right ? rightAns() : wrongAns();
+  counter++;
 }
 
 // отображается в случае правильного ответа
