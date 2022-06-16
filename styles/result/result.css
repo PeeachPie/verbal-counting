@@ -3,15 +3,11 @@ body {
   margin: 0;
   min-height: 100vh;
   font-size: 4.5vmin;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #ebebeb;
   background: #1f1f1f;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -21,7 +17,8 @@ button {
           appearance: none;
 }
 
-button, input {
+button,
+input {
   font: inherit;
   background-color: inherit;
   color: inherit;
@@ -34,11 +31,9 @@ a {
   outline: none;
   text-decoration: none;
 }
-
 a:link {
   color: #ebebeb;
 }
-
 a:visited {
   color: #ebebeb;
 }
@@ -51,8 +46,7 @@ a:visited {
 
 .result {
   padding: 3vmin;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border: 0.5vmin solid #4a4a4a;
   border-radius: 6vmin;
 }
@@ -64,30 +58,22 @@ a:visited {
 .answers {
   padding: 3vmin;
 }
-
 .answers .right {
   margin-bottom: 0.5vmin;
-  border-left: 0.5vmin solid #50ff50;
-  color: #50ff50;
+  border-left: 0.5vmin solid rgb(80, 255, 80);
+  color: rgb(80, 255, 80);
 }
-
 .answers .wrong {
   margin-bottom: 0.5vmin;
-  border-right: 0.5vmin solid #ff3737;
-  color: #ff3737;
+  border-right: 0.5vmin solid rgb(255, 55, 55);
+  color: rgb(255, 55, 55);
 }
 
 .buttons > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   height: 9vmin;
   margin: auto;
   margin-top: 3vmin;
@@ -96,25 +82,18 @@ a:visited {
 
 .correct {
   width: 45vmin;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 0.5vmin solid #ff3737;
+  box-sizing: border-box;
+  border: 0.5vmin solid rgb(255, 55, 55);
 }
-
 .correct:hover {
-  -webkit-box-shadow: 0 0 1.5vmin #ff3737;
-          box-shadow: 0 0 1.5vmin #ff3737;
+  box-shadow: 0 0 1.5vmin rgb(255, 55, 55);
 }
 
 .home {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 0.5vmin solid #50ff50;
+  box-sizing: border-box;
+  border: 0.5vmin solid rgb(80, 255, 80);
   width: 30vmin;
 }
-
 .home:hover {
-  -webkit-box-shadow: 0 0 1.5vmin #50ff50;
-          box-shadow: 0 0 1.5vmin #50ff50;
-}
-/*# sourceMappingURL=result.css.map */
+  box-shadow: 0 0 1.5vmin rgb(80, 255, 80);
+}/*# sourceMappingURL=result.css.map */

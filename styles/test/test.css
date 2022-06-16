@@ -2,15 +2,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #ebebeb;
   background: #1f1f1f;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   text-align: center;
   font-size: 4.5vmin;
 }
@@ -35,11 +31,9 @@ a {
   outline: none;
   text-decoration: none;
 }
-
 a:link {
   color: #ebebeb;
 }
-
 a:visited {
   color: #ebebeb;
 }
@@ -60,19 +54,12 @@ a:visited {
 }
 
 .check, .new {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border: 0.5vmin solid;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   font-size: 4.5vmin;
   height: 12vmin;
   margin: auto;
@@ -103,20 +90,16 @@ a:visited {
   width: 22vmin;
   border-color: #777777;
 }
-
 .new:hover {
-  -webkit-box-shadow: 0 0 1.5vmin #777777;
-          box-shadow: 0 0 1.5vmin #777777;
+  box-shadow: 0 0 1.5vmin #777777;
 }
 
 .check {
   width: 30vmin;
-  border-color: #d400ff;
+  border-color: rgb(212, 0, 255);
 }
-
 .check:hover {
-  -webkit-box-shadow: 0 0 1.5vmin #d400ff;
-          box-shadow: 0 0 1.5vmin #d400ff;
+  box-shadow: 0 0 1.5vmin rgb(212, 0, 255);
 }
 
 #answer {
@@ -126,19 +109,15 @@ a:visited {
   height: 12vmin;
   text-align: center;
   background-color: inherit;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border-bottom: 0.3vmin solid #4a4a4a;
   color: #ebebeb;
 }
-
 #answer:focus {
   outline: none;
-  border-bottom: 0.3vmin solid #d400ff;
+  border-bottom: 0.3vmin solid rgb(212, 0, 255);
 }
-
 #answer::-webkit-outer-spin-button, #answer::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-/*# sourceMappingURL=test.css.map */
+}/*# sourceMappingURL=test.css.map */

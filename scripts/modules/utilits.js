@@ -1,9 +1,9 @@
-export function getRandom(min, max) {
+function getRandom(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-export function randomChoice(choice) {
+function randomChoice(choice) {
   return choice[getRandom(0, choice.length - 1)];
 }
 
-// export {getRandom, randomChoice}
+export {getRandom, randomChoice}

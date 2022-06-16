@@ -6,7 +6,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-size: $fontSize;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: $fontColor;
   background: $bgcolor;
   display: flex;
@@ -18,7 +18,8 @@ button {
   appearance: none;
 }
 
-button, input {
+button,
+input {
   font: inherit;
   background-color: inherit;
   color: inherit;
@@ -28,13 +29,11 @@ a {
   appearance: none;
   outline: none;
   text-decoration: none;
-  &:link 
-    {
-      color: $fontColor;
-    }
+  &:link {
+    color: $fontColor;
+  }
 
-  &:visited 
-  {
+  &:visited {
     color: $fontColor;
   }
 }
@@ -81,7 +80,7 @@ a {
     margin: auto;
     margin-top: 3vmin;
     border-radius: $border-radius;
-  } 
+  }
 }
 
 .correct {
@@ -90,7 +89,7 @@ a {
   border: $border-width solid rgb(255, 55, 55);
   &:hover {
     box-shadow: 0 0 1.5vmin rgb(255, 55, 55);
-  } 
+  }
 }
 .home {
   box-sizing: border-box;
@@ -98,5 +97,5 @@ a {
   width: 30vmin;
   &:hover {
     box-shadow: 0 0 1.5vmin rgb(80, 255, 80);
-  }  
+  }
 }

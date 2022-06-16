@@ -1,20 +1,48 @@
+// import { ActionButton } from './Buttons.js'
+import { randomChoice } from './utilits.js';
+import { Problems } from './Problems.js';
 class TaskWindow {
-  constructor(element) {
+  constructor(element, context) {
     this.element = element;
-    this.problemOutput = element.querySelector('.problem');
+    // this.answerInput = new AnswerInput(elements.answerInput)
+    // this.problemOutput = elements.problemOutput;
+    // this.checkAnsButton = new ActionButton(
+    //   document.querySelector(".check"),
+    //   this.showAns.bind(context)
+    // )
   }
+
+  // rightAns() {
+  //   this.changeBorderColor("rgb(80, 255, 80)");
+  //   this.message.textContent = randomChoice(this.rightAnsMessages);
+  // }
+
+  // // отображается в случае неправильного ответа
+  // wrongAns() {
+  //   this.changeBorderColor("rgb(255, 55, 55)");
+  //   this.message.textContent = randomChoice(this.wrongAnsMessages);
+  // }
+
+  // // показывает результат ответа
+  // showAns() {
+  //   this.changeWindow(this.taskWindow, this.resultWindow)
+  //   this.problems.list[this.counter.taskNumber].check(this.answerInput.element.value) ? this.rightAns() : this.wrongAns();
+  //   this.message.style.color = this.color;
+  // }
 }
 
 class ResultWindow {
-  constructor(element) {
+  constructor(element, context) {
     this.element = element;
     this.message = element.querySelector('.message')
+    // this.
   }
 } 
 
 class AnswerInput {
-  constructor(element) {
+  constructor(element, context) {
     this.element = element;
+    // this.addEventListener('change', )
   }
 }
 
@@ -26,47 +54,53 @@ class Counter {
   }
 
   count() {
-    // this.counter++
-    this.element.textContent = `${++this.counter} задание из ${problems.questions}`;
+    this.element.textContent = `${++this.taskNumber} задание из ${this.max}`;
   }
 }
 
 class Tasks {
-  constructor(elements, problems) {
+  constructor(elements, settings) {
     this.containerColor = '#4a4a4a'
-    this.problems = problems;
+    this.problems = new Problems(settings);
+    this.problems.create()
     this.container = elements.container;
-    this.taskWindow = new TaskWindow(elements.taskWindow);
+    this.answerInput = elements.answerInput;
+    this.message = elements.message;
+    this.problemOutput = elements.problemOutput;
+    this.taskWindow = new TaskWindow(elements.taskWindow, this);
     this.resultWindow = new ResultWindow(elements.resultWindow);
     this.counter = new Counter(elements.counter, this.problems.questions);
     this.rightAnsMessages = ["Ты молодец!", "Так держать!", "Отлично!", "Правильно!"]
     this.wrongAnsMessages = ["Ой...", "Ошибка!", "Внимательнее!", "Неправильно!"]
-    // this.resultMessage = element.querySelector('.message');
-    // this.problemOutput = element.querySelector('.problem');
-    // this.anwerInput = element.querySelector('.message');
-    // this.counter = 0;
+
+    // this.checkAnsButton = new ActionButton(
+    //   document.querySelector(".check"),
+    //   this.showAns.bind(this)
+    // );
+
+    // this.newTaskButton = new ActionButton(
+    //   document.querySelector(".new"),
+    //   this.create.bind(this)
+    // );
   }
 
   changeBorderColor(color, boxShadow=false) {
     this.color = color
-    this.element.style.border = `0.5vmin solid ${this.color}`;
-    this.element.style.boxShadow = boxShadow ? `0 0 1.5vmin ${this.color}` : 'none';
-    // this.message.style.color = color;
+    this.container.style.border = `0.5vmin solid ${this.color}`;
+    this.container.style.boxShadow = boxShadow ? `0 0 1.5vmin ${this.color}` : 'none';
   }
 
   // создает новое задание
   create() {
-    console.log(problems);
     this.counter.count()
     if (this.counter.taskNumber > this.problems.questions) {
-      localStorage.setItem("problems", JSON.stringify(problems));
+      localStorage.setItem("problems", JSON.stringify(this.problems));
       window.location.href = "../pages/result.html";
     } else {
-      // answer.element.value = "";
-      // this.counterOutput.textContent = `${counter + 1} задание из ${problems.questions}`;
-      this.changeWindow(this.resultWindow, this.taskWindow)
-      this.changeBorderColor(this.containerColor)
-      this.problemOutput.textContent = this.problems.problems[this.counter.taskNumber].text;
+      this.answerInput.value = '';
+      this.changeWindow(this.resultWindow, this.taskWindow);
+      this.changeBorderColor(this.containerColor);
+      this.problemOutput.textContent = this.problems.list[this.counter.taskNumber - 1].text;
     }
   }
 
@@ -88,9 +122,14 @@ class Tasks {
 
   // показывает результат ответа
   showAns() {
-    this.changeWindow(this.taskWindow, this.resultWindow)
-    this.problems.list[this.counter.number].check(answer.element.value) ? this.rightAns() : this.wrongAns();
-    this.message.element.style.color = this.color;
-    // counter++;
+    this.changeWindow(this.taskWindow, this.resultWindow);
+    this.problems.list[this.counter.taskNumber - 1]
+      .check(this.answerInput.value)
+        ? this.rightAns()
+        : this.wrongAns();
+    this.message.style.color = this.color;
+    // console.log(this.problems.list[this.counter.taskNumber - 1])
   }
 }
+
+export { Tasks }

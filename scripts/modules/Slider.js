@@ -1,26 +1,10 @@
 class SliderSetter {
   constructor(element) {
-    // this.settings = settings;
     this.numberInput = element.querySelector('input[type="number"]');
     this.rangeInput = element.querySelector('input[type="range"]');
     this.max = Number(this.rangeInput.max)
     this.min = Number(this.rangeInput.min)
-
-    // this.numberInput.addEventListener("change", () => {
-    //   this.setInputValue('number')
-    //   this.setValue()
-    // })
-
-    // this.rangeInput.addEventListener("input", () => {
-    //   this.setInputValue('range')
-    //   this.setValue()
-    // })
   }
-
-  // // устанавливает значение по селектору в настройки
-  // setValue() {
-  //   this.settings[this.selector] = this.value
-  // }
 
   // синхронизирует значения из input type="range" и input type="number"
   synchronizeInput(type) {

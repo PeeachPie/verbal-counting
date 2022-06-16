@@ -7,7 +7,7 @@ class Problem {
   }
 
   check(value) {
-    this.given = value === '' ? null : value;
+    this.given = value === '' ? null : parseInt(value);
     this.right = this.given === this.answer;
     return this.right;
   }
@@ -71,16 +71,7 @@ class Problems {
     this.numbers = settings.numbers;
     this.max = settings.max;
     this.questions = settings.questions;
-    // this.list = settings.problems;
   }
-
-  // reset() {
-  //   this.operators = [];
-  //   this.numbers = [];
-  //   this.max = 10;
-  //   this.questions = 5;
-  //   this.problems = [];
-  // }
 
   _createProblem() {
     const operator = randomChoice(this.operators);
@@ -120,7 +111,3 @@ class Problems {
 }
 
 export { Problems }
-
-// a = new Problems
-
-// console.log(a.createProblems())

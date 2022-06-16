@@ -6,7 +6,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-size: $fontSize;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: $fontColor;
   background: $bgcolor;
   display: flex;
@@ -18,13 +18,11 @@ a {
   appearance: none;
   outline: none;
   text-decoration: none;
-  &:link 
-    {
-      color: $fontColor;
-    }
+  &:link {
+    color: $fontColor;
+  }
 
-  &:visited 
-  {
+  &:visited {
     color: $fontColor;
   }
 }
@@ -41,8 +39,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .settings 
-  {
+  .settings {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -56,7 +53,7 @@ a {
     &:hover {
       // background: rgba(80, 255, 80, 0.6);
       box-shadow: 0 0 1.5vmin rgb(80, 255, 80);
-    } 
+    }
   }
   // .lvl {
   //   position: relative;

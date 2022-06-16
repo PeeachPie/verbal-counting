@@ -70,24 +70,7 @@ class NumberButton extends SettingsButton {
     super(element);
     this.type = 'numbers'
     this.value = number;
-    // this.element.addEventListener("click", this.setNumber.bind(this))
-    // this.element.addEventListener("click", this.doubleClick.bind(this, selectNumbersBefore))
   }
-
-  // устанавливает значение множителя/делителя в настройки
-  // setNumber() {
-  //   this.setValueInList("numbers", this.number);
-  // }
-
-  // // выбирает делители/множители до нажатой кнопки включая ее
-  // selectNumbersBefore() {
-  //   const num = this.number - 1;
-  //   for (let j = num; j >= 0; j--) {
-  //     if (!numbers[j].active) {
-  //       numbers[j].setNumber();
-  //     }
-  //   }
-  // }
 }
 
 class OperatorButton extends SettingsButton {
@@ -95,13 +78,7 @@ class OperatorButton extends SettingsButton {
     super(element);
     this.type = 'operators'
     this.value = operator;
-    // this.element.addEventListener("click", this.setOperator.bind(this))
   }
-
-  // устанавливает оператор в настройки
-  // setOperator() {
-  //   this.setValueInList("operators", this.operator);
-  // }
 }
 
 export { OperatorButton, NumberButton, ActionButton }

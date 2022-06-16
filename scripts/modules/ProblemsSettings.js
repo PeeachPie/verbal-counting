@@ -15,7 +15,6 @@ class Settings {
 
   watchButton(button) {
     button.element.addEventListener("click", this.setValueInList.bind(this, button))
-    console.log("watchButton")
   }
 
   watchButtons(buttons) {
