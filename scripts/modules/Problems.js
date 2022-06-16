@@ -3,15 +3,19 @@ import {getRandom, randomChoice} from './utilits.js';
 class Problem {
   constructor() {
     this.given = null;
+    this.right = false
   }
 
-  get right() {
-    return this.given === this.answer;
+  check(value) {
+    this.given = value === '' ? null : value;
+    this.right = this.given === this.answer;
+    return this.right;
   }
 }
 
 class AdditionProblem extends Problem {
   constructor(max) {
+    super()
     this.operator = "+";
     this.max = max;
 
@@ -24,6 +28,7 @@ class AdditionProblem extends Problem {
 
 class SubtractionProblem extends Problem {
   constructor(max) {
+    super()
     this.operator = "-";
     this.max = max;
 
@@ -36,18 +41,20 @@ class SubtractionProblem extends Problem {
 
 class MultiplicationProblem extends Problem {
   constructor(number) {
+    super()
     this.operator = "*";
     this.number = number;
 
     const a = getRandom(0, 10);
     const b = this.number;
     this.answer = a * b;
-    this.text = `${a} * ${b} = `;
+    this.text = `${a} × ${b} = `;
   }
 }
 
 class DivisionProblem extends Problem {
   constructor(number) {
+    super()
     this.operator = "/";
     this.number = number;
 
@@ -64,16 +71,16 @@ class Problems {
     this.numbers = settings.numbers;
     this.max = settings.max;
     this.questions = settings.questions;
-    this.problems = settings.problems;
+    // this.list = settings.problems;
   }
 
-  reset() {
-    this.operators = [];
-    this.numbers = [];
-    this.max = 10;
-    this.questions = 5;
-    this.problems = [];
-  }
+  // reset() {
+  //   this.operators = [];
+  //   this.numbers = [];
+  //   this.max = 10;
+  //   this.questions = 5;
+  //   this.problems = [];
+  // }
 
   _createProblem() {
     const operator = randomChoice(this.operators);
@@ -97,7 +104,7 @@ class Problems {
       let problem = this._createProblem();
       problems.push(problem);
     }
-    this.problems = problems;
+    this.list = problems;
     return problems;
   }
 

@@ -1,7 +1,7 @@
 "use strict";
-
-import { Task } from './modules/Tasks.js';
-import { Problems } from './modules/Problems.js';
+// (((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))
+// import { Task } from './modules/Tasks.js';
+// import { Problems } from './modules/Problems.js';
 import { Settings } from './modules/ProblemsSettings.js';
 import { OperatorButton, NumberButton, ActionButton } from './modules/Buttons.js';
 import { Questions, Max } from './modules/Slider.js';
@@ -14,9 +14,8 @@ const $operatorsSettings = document.querySelector(".operators-settings");
 const $numbersBlock = document.querySelector(".numbers");
 const $maxBlock = document.querySelector(".max");
 
-const Tasks = new Task()
+// const Tasks = new Task()
 const settings = new Settings()
-// const settings = new Problems()
 
 // меняет страницу настроек
 function changeSettingsPage(previousPage, nextPage) {
@@ -61,12 +60,10 @@ const next = new ActionButton(
 );
 
 const questions = new Questions (
-
   document.querySelector(".questions")
-  )
+);
 
 const max = new Max(
-  // settings,
   document.querySelector(".max")
 );
 
@@ -100,7 +97,6 @@ function showElement(element) {
 }
 
 for (let i = 0; i < numbers.length; i++) {
-  // numbers[i].element.addEventListener("click", numbers[i].setNumber.bind(numbers[i]));
   numbers[i].element.addEventListener("click", numbers[i].doubleClick.bind(numbers[i], selectNumbersBefore));
 }
 

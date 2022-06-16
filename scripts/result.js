@@ -7,9 +7,13 @@ const $total   = document.querySelector(".total");
 const $correct = document.querySelector(".correct");
 const $home    = document.querySelector(".home");
 
-let Tasks = new Task() 
-Tasks.questions = JSON.parse(localStorage.getItem("questions"))
-Tasks.problems = JSON.parse(localStorage.getItem("problems"));
+// let Tasks = new Task() 
+// Tasks.questions = JSON.parse(localStorage.getItem("questions"))
+const problems = JSON.parse(localStorage.getItem("problems"));
+
+console.log(problems)
+
+
 
 // показывает результаты ответов
 function showAnswers() {

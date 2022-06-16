@@ -1,8 +1,8 @@
 class ActionButton {
-  constructor(element, action) {
+  constructor(element, action, event='click') {
     this.element = element;
     this.callAction = action;
-    this.element.addEventListener("click", this.callAction.bind(this))
+    this.element.addEventListener(event, this.callAction.bind(this))
   }
 
   // делает кнопку доступной
