@@ -1,6 +1,6 @@
-styles/result/result.css
-styles/result/result.css.map
-styles/settings/settings.css
-styles/settings/settings.css.map
-styles/test/test.css
-styles/test/test.css.map
+*.css
+*.css.map
+# styles/settings/settings.css
+# styles/settings/settings.css.map
+# styles/test/test.css
+# styles/test/test.css.map
