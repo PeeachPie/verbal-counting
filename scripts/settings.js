@@ -1,5 +1,7 @@
 "use strict";
 
+localStorage.clear()
+
 import { ProblemsSettings } from './modules/problems/settings.js';
 import { OperatorButton, NumberButton, ActionButton } from './modules/Buttons.js';
 import { Questions, Max } from './modules/Slider.js';

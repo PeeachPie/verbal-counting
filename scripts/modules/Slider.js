@@ -36,16 +36,16 @@ class SliderSetter {
 }
 
 class Questions extends SliderSetter {
-  constructor (numberInput, rangeInput) {
-    super(numberInput, rangeInput);
+  constructor (element) {
+    super(element);
     this.value = 5;
     this.type = 'questions'
   }
 }
 
 class Max extends SliderSetter {
-  constructor (numberInput, rangeInput) {
-    super(numberInput, rangeInput);
+  constructor (element) {
+    super(element);
     this.value = 10;
     this.type = 'max'
   }

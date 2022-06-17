@@ -40,18 +40,6 @@ class SettingsButton {
     this.active = false;
   }
 
-  // // установщик значения по селектору
-  // setValueInList(selector, value) {
-  //   const index = this.settings[selector].indexOf(value);
-  //   if (index === -1) {
-  //     this.settings[selector].push(value);
-  //     this.select()
-  //   } else if (this.settings[selector].length > 1) {
-  //     this.settings[selector].splice(index, 1);
-  //     this.unselect()
-  //   }
-  // }
-
   // обрабатывает событие двойного нажатия
   doubleClick(f) {
     const time = new Date().getTime();

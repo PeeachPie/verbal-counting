@@ -1,7 +1,7 @@
 "use strict";
 
 import { ActionButton } from './modules/Buttons.js';
-import { Tasks } from './modules/Task.js';
+import { Tasks } from './modules/Tasks.js';
 
 const settings = JSON.parse(localStorage.getItem("settings"));
 const answerInput = document.querySelector("#answer");
@@ -29,11 +29,10 @@ answerInput.addEventListener('change',   tasks.showAns.bind(tasks))
 const newTaskButton = new ActionButton(
   document.querySelector(".new"),
   () => {
+    tasks.create()
     if (tasks.finished) {
       localStorage.setItem("problems", JSON.stringify(tasks.problems));
       window.location.href = "../pages/result.html";
-    } else {
-      tasks.create()
     }
   }
 );
