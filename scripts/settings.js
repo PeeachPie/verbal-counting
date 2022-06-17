@@ -1,8 +1,6 @@
 "use strict";
-// (((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))
-// import { Task } from './modules/Tasks.js';
-// import { Problems } from './modules/Problems.js';
-import { Settings } from './modules/ProblemsSettings.js';
+
+import { ProblemsSettings } from './modules/problems/settings.js';
 import { OperatorButton, NumberButton, ActionButton } from './modules/Buttons.js';
 import { Questions, Max } from './modules/Slider.js';
 
@@ -14,8 +12,7 @@ const $operatorsSettings = document.querySelector(".operators-settings");
 const $numbersBlock = document.querySelector(".numbers");
 const $maxBlock = document.querySelector(".max");
 
-// const Tasks = new Task()
-const settings = new Settings()
+const settings = new ProblemsSettings()
 
 // меняет страницу настроек
 function changeSettingsPage(previousPage, nextPage) {
@@ -80,10 +77,13 @@ settings.watchButtons(numbers)
 
 // выбирает делители/множители до нажатой кнопки включая ее
 function selectNumbersBefore(button) {
-  const num = button.number - 1;
+  console.log(button)
+  console.log(numbers)
+  const num = button.value - 1;
   for (let j = num; j >= 0; j--) {
     if (!numbers[j].active) {
-      numbers[j].setNumber();
+      console.log(numbers[j])
+      settings.setValueInList(button);
     }
   }
 }
@@ -97,13 +97,13 @@ function showElement(element) {
 }
 
 for (let i = 0; i < numbers.length; i++) {
-  numbers[i].element.addEventListener("click", numbers[i].doubleClick.bind(numbers[i], selectNumbersBefore));
+  numbers[i].element.addEventListener("click", () => {numbers[i].doubleClick(selectNumbersBefore.bind(null, numbers[i]))});
 }
 
 window.addEventListener("unload", resetSettings);
 
 window.addEventListener("click", () => {
-  console.log(settings)
+  // console.log(settings)
   settings.operators.includes("+") || settings.operators.includes("-")
     ? showElement($maxBlock)
     : hideElement($maxBlock);

@@ -1,15 +1,13 @@
 "use strict";
 
-import { Task } from './modules/Tasks.js';
+import { ProblemsResult } from "./modules/problems/result.js";
 
 const $answers = document.querySelector(".answers");
 const $total   = document.querySelector(".total");
 const $correct = document.querySelector(".correct");
 const $home    = document.querySelector(".home");
 
-// let Tasks = new Task() 
-// Tasks.questions = JSON.parse(localStorage.getItem("questions"))
-const problems = JSON.parse(localStorage.getItem("problems"));
+const problems = new ProblemsResult(JSON.parse(localStorage.getItem("problems")));
 
 console.log(problems)
 
@@ -17,13 +15,13 @@ console.log(problems)
 
 // показывает результаты ответов
 function showAnswers() {
-  for (let i = 0; i < Tasks.questions; i++) {
+  for (let i = 0; i < problems.questions; i++) {
     let el = document.createElement("div");
-    el.className = Tasks.problems[i].right ? "right" : "wrong";
+    el.className = problems.list[i].right ? "right" : "wrong";
     el.innerHTML = `
-    ${Tasks.problems[i].eq}
-    ${Tasks.problems[i].given == null ? "__" : Tasks.problems[i].given}
-    ${Tasks.problems[i].right ? "" : `&nbsp;(${Tasks.problems[i].ans})`}
+    ${problems.list[i].text}
+    ${problems.list[i].given == null ? "__" : problems.list[i].given}
+    ${problems.list[i].right ? "" : `&nbsp;(${problems.list[i].answer})`}
     `;
     $answers.append(el);
   }
@@ -31,19 +29,19 @@ function showAnswers() {
 
 // выбирает и устанавливает неправильно решенные примеры
 function correctionOfMistakes() {
-  localStorage.setItem("problems", JSON.stringify(Tasks.wrongProblems));
-  localStorage.setItem("questions", JSON.stringify(Tasks.questions - Tasks.right));
+  localStorage.setItem("problems", JSON.stringify(problems.wrongProblems));
+  localStorage.setItem("questions", JSON.stringify(problems.questions - problems.right));
 }
 
 // демонстрирует результат тестирования
 function showResult() {
-  $total.textContent = `Результат: ${Tasks.right} из ${Tasks.questions}`;
+  $total.textContent = `Результат: ${problems.right} из ${problems.questions}`;
   showAnswers();
 }
 
 window.addEventListener('load', showResult);
 
-if (Tasks.questions == Tasks.right) {
+if (problems.questions == problems.right) {
   $correct.style.display = "none";
 }
 

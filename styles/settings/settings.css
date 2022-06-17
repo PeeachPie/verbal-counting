@@ -1,11 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-.choose * >, .buttons > *, .info {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -14,6 +7,13 @@ body {
   color: #ebebeb;
   background: #1f1f1f;
   display: flex;
+}
+
+.choose *, .buttons > *, .info {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 button {

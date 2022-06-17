@@ -1,4 +1,4 @@
-class Settings {
+class ProblemsSettings {
   constructor () {
     this.operators = [];
     this.numbers = [];
@@ -50,4 +50,4 @@ class Settings {
   }
 }
 
-export { Settings }
+export { ProblemsSettings }

@@ -1,4 +1,4 @@
-import {getRandom, randomChoice} from './utilits.js';
+import {getRandom, randomChoice} from '../utilits.js';
 
 class Problem {
   constructor() {
@@ -65,7 +65,7 @@ class DivisionProblem extends Problem {
   }
 }
 
-class Problems {
+class ProblemsCreate {
   constructor(settings) {
     this.operators = settings.operators;
     this.numbers = settings.numbers;
@@ -110,4 +110,4 @@ class Problems {
   }
 }
 
-export { Problems }
+export { ProblemsCreate }
